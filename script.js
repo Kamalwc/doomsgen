@@ -1,30 +1,60 @@
 
-// <!-- a) length of password (numeric input)
-let passwordLength = prompt("Please enter password length");
+var EL = document.getElementById("password");
+var button = document.getElementById("gen");
 
-// b) validate length is between 8 and 128.
-let validLength  = passwordLength >= 8 && passwordLength >=128 ? true : false;
+var specialChar = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")"];
+var uppercaseChar = ["A", "B", "C", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+var lowercaseChar = ["a", "b", "c", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var numericChar = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-// c) type of characters to include - special characters, uppercase, lowercase, numeric(series of yes/no confirms)
-let special = confirm("include special characters?");
-let uppercase = confirm("include uppercase characters?"); 
-let lowercase = confirm("include lowercase characters?");
-let numeric = confirm("include numeric characters?");
+let passwordLength ;
+let special ;
+let uppercase ; 
+let lowercase;
+let numeric;
 
-// d) Validate the user selected at least one character type.
-let hasCharType = uppercase || lowercase ? true : false;
+button.addEventListener("click", function promptUser(){
+    passwordLength = prompt("Please enter password length");
+    special = confirm("include special characters?");
+    uppercase = confirm("include uppercase characters?"); 
+    lowercase = confirm("include lowercase characters?");
+    numeric = confirm("include numeric characters?");
 
-//if D or B are false start over 
-// PRESSING "GENERATE PASSWORD BUTTON" TRIGGERS THE METHOD TO ASK PROMPTS
-// once they input invalid response call the main trigger method again
-// dont set invalid variable to false instead trigger the method there
-// Any invalid response will terminate password generation and the user must start over.
-if(/*false*/){
-    //start over 
-}else{
-    //generate password
+    let hasCharType = uppercase || lowercase ? true : false;
+    let validLength  = passwordLength >= 8 && passwordLength >=128 ? true : false;
+
+    if((hasCharType === false && validLength === false) || passwordLength === "0"){
+        alert("Input was invalid please try again");
+        
+    }else{
+        genpass();
+    }
+});
+
+function genpass(){
+        var bagchars = [];
+    if(special){
+        bagchars.push(specialChar); 
+    }
+    if(uppercase){ 
+        bagchars.push(uppercaseChar);
+    }
+    if(lowercase){
+        bagchars.push(lowercaseChar);
+    }
+    if(numeric){
+        bagchars.push(numericChar);
+    }
+
+    var password = "";
+    for(var i = 0; i < passwordLength; i++){
+        let randomType = Math.floor(Math.random() * bagchars.length) + 0;
+        let randomCharacter = Math.floor(Math.random() * bagchars[randomType].length) + 0;
+        password += bagchars[ randomType ][ randomCharacter ];
+    }
+    
+    EL.textContent = password;
 }
 
-while()
 
-// Once the user has entered valid responses, generate a password that meets their criteria and display it in the box. -->
+
