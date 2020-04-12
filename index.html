@@ -5,13 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Password generator</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
     <!-- TODO: ADD AN ICON TO YOUR TITLE -->
- 
-
-    
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+              Password Generator
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Your Secure Password</h5>
+              <div id="dashes">
+                  <p id="userMsg">Click the button to generate a Random Password</p>
+                  <p id = "password"> </p>
+              </div>
+              <button type="button" id="gen" class="btn btn-primary btn-lg">Generate Password</button>
+            </div>
+          </div>
+    </div>
 </body>
+<script src="script.js"></script>
 </html>
